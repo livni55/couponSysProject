@@ -1,0 +1,49 @@
+<h2 style="text-align: Center" class=myBody>Purchase Coupon</h2>
+
+<p style="text-align: left">Please insert the coupon id you are interested in:</p>
+
+<table class="mytable" style="text-align: left">
+	<td><input class="w3-input w3-border w3-round-large" style="width: 80%" type="text" ng-model="pu.id" placeholder="Coupon ID"
+		 onkeypress='return event.charCode >= 48 && event.charCode <= 57' required></td>
+	<td><button value="purchase" class="w3-btn w3-white w3-border w3-round-large" ng-click="pu.purchaseCoupon()">Purchase Me !</button></td>
+</table>
+
+<p ng-show="pu.success" style="color: lime; margin-left: 2%">Congratulations, the coupon was successfully purchased...!</p>
+<p ng-show="pu.failure" style="color: red; margin-left: 2%">Oops ! something went wrong, please try again...</p>
+
+<br>
+<br>
+<div style="text-align: left">
+	Here is the list of coupons that <b>you have purchased in the past</b>.</div><br>
+<div ng-controller="GetAllCouponsCtrl as g">
+	<table width="800px">
+		<th ng-click="g.setOrder('id')">ID</th>
+		<th>START DATE</th>
+		<th>END DATE</th>
+		<th>AMOUNT</th>
+		<th>TITLE</th>
+		<th ng-click="g.setOrder('type')">TYPE</th>
+		<th ng-click="g.setOrder('price')">PRICE</th>
+		<th>MESSAGE</th>
+		<th>IMAGE</th>
+		</tr>
+
+		<tr ng-repeat="c in g.mycoupons | orderBy : g.orderB : g.goUp ">
+			<td>{{c.id}}</td>
+			<td>{{c.title}}</td>
+			<td>{{c.startDate}}</td>
+			<td>{{c.endDate}}</td>
+			<td>{{c.amount}}</td>
+			<td>{{c.type}}</td>
+			<td>{{c.price}}</td>
+			<td>{{c.message}}</td>
+			<td><img style="max-height:70px;height:auto;" ng-src="{{c.image}}" alt="image of coupon" /></td>
+		</tr>
+	</table>
+</div>
+<br>
+<br>
+<div style="text-align: left">
+	<b>TIP</b>: you can arrange the table in ascending and descending order by:
+	<b>ID</b>, <b>TYPE</b>, and<b> PRICE</b>, by clicking the column header
+</div>

@@ -1,0 +1,45 @@
+<p style="text-align: left">Please enter the coupon expiration date
+	to search for :</p>
+
+<table >
+<td><input class="w3-input w3-border w3-round-large"
+	style="width: 80%" type="date" ng-model="gd.endDate" required></td>
+<td><button class="w3-btn w3-white w3-border w3-round-large"
+		ng-click="gd.getDate()">Get Coupons</button></td>
+</table>
+
+<br>
+<br>
+<table width="840px">
+<caption>All Company Coupons by end date</caption>
+	<tr background-color="#757575">
+		<th ng-click="gd.setOrder('id')">ID</th>
+		<th>TITLE</th>
+		<th>START DATE</th>
+		<th>END DATE</th>
+		<th>AMOUNT</th>
+		<th ng-click="gd.setOrder('type')">TYPE</th>
+		<th ng-click="gd.setOrder('price')">PRICE</th>
+		<th>MESSAGE</th>
+		<th>IMAGE</th>
+	</tr>
+
+	<tr ng-repeat="c in gd.couponsDate | orderBy : gd.orderB : gd.goUp">
+		<td>{{c.id}}</td>
+		<td>{{c.title}}</td>
+		<td>{{c.startDate}}</td>
+		<td>{{c.endDate}}</td>
+		<td>{{c.amount}}</td>
+		<td>{{c.type}}</td>
+		<td>{{c.price}}</td>
+		<td>{{c.message}}</td>
+		<td><img  style="max-height:70px;height:auto;" ng-src="{{c.image}}" alt="image of coupon"/></td>
+	</tr>
+</table>
+<br>
+<br>
+<div style="text-align: left">
+	<b>TIP</b>: you can arrange the table in ascending and descending order
+	by:<b>ID</b>, <b>TYPE</b>, and<b>PRICE</b>, by clicking the column
+	header
+</div>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>All Companies</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>All  Companies:</h2>
+  <table class="table table-hover table-responsive">
+    <thead>
+        <strong>Search By Name: <input ng-model="search.compName" /></br>
+      <tr>
+        <th ng-click="companiesCtrl.orderBy('id')"><strong> <span ng-if="companiesCtrl.goUp">ID▼</span></strong><strong><span ng-if="!companiesCtrl.goUp">ID▲</span></strong></th>
+        <th ng-click="companiesCtrl.orderBy('compName')"><strong> <span ng-if="companiesCtrl.goUp">NAME▼</span></strong><strong><span ng-if="!companiesCtrl.goUp">NAME▲</span></strong></th>
+        <th><strong>PASSWORD</strong></th>
+        <th><strong>EMAIL</strong></th>        
+        <th><strong>ACTION</strong></th>        
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr ng-repeat="company in companiesCtrl.companies | orderBy: companiesCtrl.order : companiesCtrl.goUp | filter:search" >
+        <td >{{company.id}}</td>
+        <td>{{company.compName}}</td>
+        <td><div ng-show="!company.edit">{{company.password}}</div><input ng-show="company.edit" ng-model="company.password"></td>
+        <td><div ng-show="!company.edit"> {{company.email}}</div><input ng-show="company.edit" ng-model="company.email"></td>
+        <td>
+				<button ng-click="companiesCtrl.deleteCompany(company.id)" class="btn btn-danger">
+					delete
+        </button>     
+				<button name="update"  class="btn"  ng-click="companiesCtrl.showUpdateCompany(company)" >
+					{{company.edit? 'save':'edit'}} 
+				</button>
+			</td>			
+    </tr>
+ 
+	 <a  class="btn btn-primary btn-block" href="#/createcompany">
+           Create New Company 
+         </a>
+    </tbody>
+  </table>
+				   
+</div>
+      <div id="successAlert" class="alert alert-success" style="display:none" onclick="closePop(this)" >
+			</div></br>
+			<div id="errorAlert" class="alert alert-danger" style="display:none" onclick="closePop(this)">				
+      </div></br>
+
+</body>
+</html>

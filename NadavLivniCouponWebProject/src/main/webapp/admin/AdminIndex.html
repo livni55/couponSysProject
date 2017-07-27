@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="couponSystem">
+<head>
+  <title>Admin Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="angular/angular.js"></script>
+    <script src="angular/angular-ui-router.js"></script>
+    <script src="angular/angular-confirm.min.js"></script>
+    <script src="angular/bootstrap.js"></script>
+    <script src="angular/route.config.js"></script>
+    <script src="ctrl/fusioncharts.js"></script>
+    <script src="ctrl/angular-fusioncharts.min.js"></script>
+    <script src="ctrl/admin.srvc.js"></script>
+    <script src="ctrl/about.ctrl.js"></script>
+    <script src="ctrl/CompaniesCtrl.js"></script>
+    <script src="ctrl/CustomerCtrl.js"></script>
+    <script src="ctrl/createcompany.ctrl.js"></script>
+    <script src="ctrl/createcustomer.ctrl.js"></script>
+    <script src="ctrl/404Ctrl.js"></script>
+    <link href="angular/angular-confirm.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <script>
+    function closePop(element) {
+					var selector='#'+$(element).attr('id');
+					$(selector).hide();
+				}
+
+    </script>
+
+
+</head>
+<body class="myBody">
+
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="../admin/AdminIndex.html">Coupon System Project</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#/manageCompanies" ng-click="companiesCtrl.getAllCompanies()">Mange Companies</a></li>
+        <li class="active"><a href="#/manageCustomers" ng-click="customerCtrl.getAllCustomers()">Mange Customers</a></li>        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../LogoutServlet"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="text-center">
+  <h1>Admin Dashboard</h1>
+
+</div><br>
+
+<div class="content-box">
+			<div ui-view></div>
+</div>
+
+<br><br><div class="text-center">
+<p>The design is simple in purpse</p>
+<p>And it is also responsive, try it!</p>
+  <p>
+    <a href="mailto:livni55@gmail.com"><span class="fa fa-envelope-open"> Email me</span></a>
+    |  <a href="http://www.linkedin.com/in/nadavlivni1" class="fa fa-linkedin" ></a> 
+	| <i class="fa fa-copyright"></i>  Copyright 2017 Nadav Livni
+</p>
+</div>   
+</body>
+
+<style>
+    .fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+.myBody {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+</style>
+</html>

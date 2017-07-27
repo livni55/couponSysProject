@@ -1,0 +1,95 @@
+<head>
+  <title>All Coupons</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<div class="container">
+<h2 class="myBody">All  Coupons:</h2>
+<p>Here you can mange your coupons.</br>
+		You can delete them, edit them and search them by different filters.</br>
+		During the curse I decided to drop down the pages with the special calls to the server for each action, so they are all here.
+</p>
+  <table class="table table-hover table-responsive ">
+    <thead>
+    <th>
+        <strong>Search By ID: <input ng-model="search.id" /></strong></br>
+        <strong>Search By TITLE: <input ng-model="search.title" /></strong></br>
+        </th>
+        <th>
+        <strong>Search By PRICE: <input ng-model="search.price" /></strong></br>
+        <strong>Search By Type: <select  ng-model="search.type"  >
+                    <option value="CAMPING" >CAMPING</option>
+                    <option value="ELECTRICITY">ELECTRICITY</option>
+                    <option value="FOOD">FOOD</option>
+                    <option value="HEALTH">HEALTH</option>
+                    <option value="RESTAURANTS">RESTAURANTS</option>
+                    <option value="SPORTS">SPORTS</option>
+                    <option value="TRAVELLING">TRAVELLING</option>
+                </select></br>
+      </th>
+      <tr>
+        <th ng-click="gall.setOrder('id')"><strong> <span ng-if="gall.orderB=='id'">ID▼</span></strong><strong><span ng-if="gall.orderB!=='id'">ID</span></strong></th>
+        <th ng-click="gall.setOrder('title')"><strong> <span ng-if="gall.orderB=='title'">TITLE▼</span></strong><strong><span ng-if="gall.orderB!=='title'">TITLE</span></strong></th>
+        <th ng-click="gall.setOrder('amount')"><strong> <span ng-if="gall.orderB=='amount'">AMOUNT▼</span></strong><strong><span ng-if="gall.orderB!=='amount'">AMOUNT</span></strong></th>
+        <th ng-click="gall.setOrder('type')"><strong> <span ng-if="gall.orderB=='type'">TYPE▼</span></strong><strong><span ng-if="gall.orderB!=='type'">TYPE</span></strong></th>
+        <th ng-click="gall.setOrder('price')"><strong> <span ng-if="gall.orderB=='price'">PRICE▼</span></strong><strong><span ng-if="gall.orderB!=='price'">PRICE</span></strong></th>
+        <th>MESSAGE</th>
+        <th ng-click="gall.setOrder('startDate')"><strong> <span ng-if="gall.orderB=='startDate'">START DATE▼</span></strong><strong><span ng-if="gall.orderB!=='startDate'">START DATE</span></strong></th>
+        <th ng-click="gall.setOrder('endDate')"><strong> <span ng-if="gall.orderB=='endDate'">END DATE▼</span></strong><strong><span ng-if="gall.orderB!=='endDate'">END DATE</span></strong></th>
+        <th>IMAGE</th>
+        <th>ACTION</th>
+    </tr>
+    <thead>
+<tbody>
+    <tr ng-repeat="c in gall.coupons | orderBy : gall.orderB : gall.goUp | filter:search">
+         <td>{{c.id}}</td>
+        <td>{{c.title}}</td>
+         <td><div ng-show="!c.edit">{{c.amount}}</div><input ng-show="c.edit" ng-model="c.amount" required="required" noteable-required></td>
+         <td><div ng-show="!c.edit">{{c.type}}</div>
+         <select ng-show="c.edit" ng-model="c.type"  selected="{{c.type}}"  required="required" noteable-required>
+                    <option value="CAMPING" >CAMPING</option>
+                    <option value="ELECTRICITY">ELECTRICITY</option>
+                    <option value="FOOD">FOOD</option>
+                    <option value="HEALTH">HEALTH</option>
+                    <option value="RESTAURANTS">RESTAURANTS</option>
+                    <option value="SPORTS">SPORTS</option>
+                    <option value="TRAVELLING">TRAVELLING</option>
+                </select>
+         </td>
+         <td><div ng-show="!c.edit">{{c.price}}</div><input ng-show="c.edit" ng-model="c.price" required="required" noteable-required></td>
+         <td><div ng-show="!c.edit">{{c.message}}</div><input ng-show="c.edit" ng-model="c.message"></td>
+        <td><div >{{c.startDate}}</div></td>
+        <td><div > {{c.endDate}}</div></td>
+        <td><img ng-show="!c.edit" style="max-height:70px;height:auto;" ng-src="{{c.image}}" alt="image of coupon"/>
+        <input placeholder="chose Image"ng-show="c.edit" type="button" id="dropzone" class="dropzone w3-input w3-light-grey" ng-value="c.imageName" ng-click="fileSelectClick();"/>
+        </td>
+    	<td>
+				<button ng-click="gall.deleteCoupon(c.id)" class="btn btn-danger">
+					delete
+        </button>     
+				<button name="update"  class="btn"  ng-click="gall.showUpdateCoupon(c)" >
+					{{c.edit? 'save':'edit'}} 
+				</button>
+			</td>	
+    </tr>
+    
+    <a  class="btn btn-primary btn-block" href="#/create">
+           Create New Coupon
+         </a>
+    </tbody>
+</table>
+<br><br>
+<div id="successAlert" class="alert alert-success" style="display:none" onclick="closePop(this)" >
+			</div></br>
+			<div id="errorAlert" class="alert alert-danger" style="display:none" onclick="closePop(this)">				
+      </div></br>
+</div>
+
+<style>
+
+</style>

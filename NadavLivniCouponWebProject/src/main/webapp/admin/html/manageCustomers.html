@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>All Customers</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+  <h2>All  Customers:</h2>
+  <table class="table table-hover table-responsive">
+    <thead>
+        <strong>Search By Name: <input ng-model="search.custName" /></br>
+      <tr>
+        <th ng-click="customerCtrl.orderBy('id')"><strong> <span ng-if="customerCtrl.goUp">ID▼</span></strong><strong><span ng-if="!customerCtrl.goUp">ID▲</span></strong></th>
+        <th ng-click="customerCtrl.orderBy('custName')"><strong> <span ng-if="customerCtrl.goUp">NAME▼</span></strong><strong><span ng-if="!customerCtrl.goUp">NAME▲</span></strong></th>
+        <th><strong>PASSWORD</strong></th>
+        <th><strong>ACTION</strong></th>        
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr ng-repeat="customer in customerCtrl.customers | orderBy: customerCtrl.order : customerCtrl.goUp | filter:search" >
+        <td >{{customer.id}}</td>
+        <td>{{customer.custName}}</td>
+        <td><div ng-show="!customer.edit">{{customer.password}}</div><input ng-show="customer.edit" ng-model="customer.password"></td>
+        <td>
+				<button ng-click="customerCtrl.deleteCustomer(customer.id)" class="btn btn-danger">
+					delete
+        </button>     
+				<button name="update"  class="btn"  ng-click="customerCtrl.showUpdateCustomer(customer)" >
+					{{customer.edit? 'save':'edit'}} 
+				</button>
+			</td>			
+    </tr>
+ 
+	 <a  class="btn btn-primary btn-block" href="#/createcustomer">
+           Create New Customer 
+         </a>
+    </tbody>
+  </table>
+				   
+</div>
+      <div id="successAlert" class="alert alert-success" style="display:none" onclick="closePop(this)" >
+			</div></br>
+			<div id="errorAlert" class="alert alert-danger" style="display:none" onclick="closePop(this)">				
+      </div></br>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<div class="w3-container w3-light-grey row">
+    <div class="w3-container w3-blue">
+        <h3 class="myBody">Create Coupon Form: </h3>
+	</div>
+    <form ng-submit="c.createCoupon()">
+        <div class="w3-row-padding w3-bar-item">
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>Title</b></label>
+                <input class="w3-input w3-light-grey" type="text" ng-model="c.coup.title" placeholder="Coupon Title" required="required" noteable-required/>
+            </div>
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>ID</b></label>
+                <input class="w3-input w3-light-grey" type="number" ng-model="c.coup.id" placeholder="Coupon ID" required="required" noteable-required/>
+            </div>
+        </div>
+        </br>
+        <div class="w3-row-padding w3-bar-item">
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>Start Date</b></label>
+                <input class="w3-input w3-light-grey" type="date" ng-model="c.coup.startDate" placeholder="Start Date" max="{{c.coup.endDate | date:'yyyy-MM-dd'}}" required="required" noteable-required/>
+            </div>
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>End Date</b></label>
+                <input class="w3-input w3-light-grey" type="date" ng-model="c.coup.endDate" placeholder="End Date" min="{{today | date:'yyyy-MM-dd'}}" required="required" noteable-required/>
+            </div>
+        </div></br>
+        <div class="w3-row-padding w3-bar-item">
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>Amount</b></label>
+                <input class="w3-input w3-light-grey" type="number" ng-model="c.coup.amount" placeholder="Amount" required="required" noteable-required/>
+            </div>
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>Coupon Type</b></label>
+                <select class="w3-select w3-border w3-light-grey" ng-model="c.coup.type"  required="required">
+                    <option value="CAMPING" selected="selected">CAMPING</option>
+                    <option value="ELECTRICITY">ELECTRICITY</option>
+                    <option value="FOOD">FOOD</option>
+                    <option value="HEALTH">HEALTH</option>
+                    <option value="RESTAURANTS">RESTAURANTS</option>
+                    <option value="SPORTS">SPORTS</option>
+                    <option value="TRAVELLING">TRAVELLING</option>
+                </select>
+            </div>
+        </div></br>
+        <div class="w3-row-padding w3-bar-item">
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>Message</b></label>
+                <input class="w3-input w3-light-grey" type="text" ng-model="c.coup.message" placeholder="Message"  required="required" noteable-required>
+            </div>
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>Price</b></label>
+                <input class="w3-input w3-light-grey" type="number" ng-model="c.coup.price" placeholder="Price"  required="required" noteable-required>
+            </div>
+        </div></br>
+        <div class="w3-row-padding w3-bar-item">
+            <div class="w3-half">
+                <label class="w3-text-teal"><b>Image</b></label>
+                <input style="width:200px" type="button" id="dropzone" class="upload-drop-zone" ng-value="c.coup.image" ng-click="fileSelectClick();"/>
+            </div>
+            <div class="w3-half">
+                <img style="max-width:100px;max-height:100px;height:auto;width:auto;display: block;" width="700" height="700" ng-src="{{c.coup.image}}"/>
+            </div>
+        </div></br>
+            <div class="w3-third text-right">
+                <button class="w3-btn w3-blue-grey" type="submit">Create Coupon</button>
+            </div>
+    </form>
+    
+    <p id="succes"ng-show="c.success" style="color: lime; margin-left: 2%">Congratulations,
+	the coupon was successfully create...!</p>
+<p id="fail"  ng-show="c.failure" style="color: red; margin-left: 2%">Oops !
+	something went wrong, please try again...</p>
+</div>

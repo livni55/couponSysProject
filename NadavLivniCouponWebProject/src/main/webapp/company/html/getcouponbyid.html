@@ -1,0 +1,46 @@
+<h2 style="text-align: left">Get coupon by ID</h2>
+<table1 style="float:left;">
+  <tr ><a href="#/home"><img  alt="home" src="image/home.png" style=" width: 55px;height: 55px;padding:10px;"></a></tr>
+  <tr ><a href="https://www.facebook.com"target="blank"><img  alt="facebook" src="image/facebook.png" style=" width: 55px;height: 55px;padding:10px;"></a></tr>
+  <tr><a href="https://www.linkedin.com"target="blank"><img alt="linkedin" src="image/linkedin.png" style="width: 55px;height: 55px;padding:10px; "></a></tr>
+  <tr ><a href="https://www.twitter.com" target="blank"><img alt="twitter" src="image/twitter.png" style=" width: 55px;height: 55px;padding:10px;"></a></tr>
+</table1><br><br><br>
+<hr class="style17">
+<p style="text-align: left">Please enter the coupon ID to search for
+	:</p>
+
+<table class="mytable">
+	<td><input class="w3-input w3-border w3-round-large" type="text"
+		ng-model="gid.id" placeholder="Coupon ID" required style="width: 80%"></td>
+	<td><button class="w3-btn w3-white w3-border w3-round-large"
+			ng-click="gid.getId()">Get Coupon</button></td>
+</table>
+
+<br>
+<br>
+<table width="840px">
+<caption>Table 2.3 Coupon by id</caption>
+	<tr background-color="#757575">
+		<th>ID</th>
+		<th>TITLE</th>
+		<th>START DATE</th>
+		<th>END DATE</th>
+		<th>AMOUNT</th>
+		<th>TYPE</th>
+		<th>PRICE</th>
+		<th>MESSAGE</th>
+		<th>IMAGE</th>
+	</tr>
+
+	<tr>
+		<td>{{gid.coupon.id}}</td>
+		<td>{{gid.coupon.title}}</td>
+		<td>{{gid.coupon.startDate}}</td>
+		<td>{{gid.coupon.endDate}}</td>
+		<td>{{gid.coupon.amount}}</td>
+		<td>{{gid.coupon.type}}</td>
+		<td>{{gid.coupon.price}}</td>
+		<td>{{gid.coupon.message}}</td>
+		<td>{{gid.coupon.image}}</td>
+	</tr>
+</table>

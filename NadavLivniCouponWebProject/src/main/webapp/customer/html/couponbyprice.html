@@ -1,0 +1,45 @@
+<h2>Purchase Coupon By A Limited Price</h2>
+<hr class="style17">
+
+<p style="text-align: left">Please select the Max Prcie Of Coupon You Wish For :</p>
+<table>
+	<td><input class="w3-input w3-border w3-round-large" style="width: 100%" ng-model="pr.price" placeholder="Max PRICE" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+		 required></td>
+	<td><button class="w3-btn w3-white w3-border w3-round-large" ng-click="pr.getPrice()">Get Coupons</button></td>
+</table>
+
+<br>
+<br>
+<table width="800px">
+	<tr background-color="#757575">
+		<th ng-click="pr.setOrder('id')">ID</th>
+		<th>TITLE</th>
+		<th>START DATE</th>
+		<th>END DATE</th>
+		<th>AMOUNT</th>
+		<th ng-click="pr.setOrder('type')">TYPE</th>
+		<th ng-click="pr.setOrder('price')">PRICE</th>
+		<th>MESSAGE</th>
+		<th>IMAGE</th>
+	</tr>
+
+	<tr ng-repeat="c in pr.coupons | orderBy : pr.orderB : pr.goUp">
+		<td>{{c.id}}</td>
+		<td>{{c.title}}</td>
+		<td>{{c.startDate}}</td>
+		<td>{{c.endDate}}</td>
+		<td>{{c.amount}}</td>
+		<td>{{c.type}}</td>
+		<td>{{c.price}}</td>
+		<td>{{c.message}}</td>
+		<td><img style="max-height:70px;height:auto;" ng-src="{{c.image}}" alt="image of coupon" /></td>
+	</tr>
+</table>
+<div id="errorDIv" class="alert alert-danger" style="display:none">
+			</div>
+<br>
+<br>
+<div style="text-align: left">
+	<b>TIP</b>: you can arrange the table in ascending and descending order by:
+	<b> ID</b>, <b>TYPE</b>, and<b> PRICE</b>, by clicking the column header
+</div>
